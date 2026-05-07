@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CESSI MDQ 2026 — Comunidad del Evento</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			:root {
+				--bg: #070c18;
+				--surface: #0f1829;
+				--surface2: #162035;
+				--border: rgba(255, 255, 255, 0.07);
+				--accent: #3effd6;
+				--accent2: #6c63ff;
+				--text: #e8edf5;
+				--text2: #7a8ba8;
+				--text3: #4a5870;
+				--r: 16px;
+				--r-sm: 8px;
+			}
+			body {
+				background: var(--bg);
+				color: var(--text);
+				font-family: "Figtree", sans-serif;
+				font-size: 15px;
+				line-height: 1.6;
+				min-height: 100vh;
+			}
+
+			/* HEADER */
+			.header {
+				text-align: center;
+				padding: 3rem 1.5rem 2rem;
+				position: relative;
+				overflow: hidden;
+			}
+			.header::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 700px;
+				height: 250px;
+				background: radial-gradient(
+					ellipse at center,
+					rgba(62, 255, 214, 0.08) 0%,
+					transparent 70%
+				);
+				pointer-events: none;
+			}
+			.event-tag {
+				display: inline-block;
+				font-family: "Syne", sans-serif;
+				font-size: 11px;
+				font-weight: 600;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: var(--accent);
+				border: 1px solid rgba(62, 255, 214, 0.3);
+				border-radius: 20px;
+				padding: 4px 14px;
+				margin-bottom: 16px;
+			}
+			.event-title {
+				font-family: "Syne", sans-serif;
+				font-size: clamp(2.2rem, 7vw, 4rem);
+				font-weight: 800;
+				letter-spacing: -0.02em;
+				line-height: 1.05;
+				margin-bottom: 10px;
+			}
+			.event-title span {
+				color: var(--accent);
+			}
+			.event-sub {
+				color: var(--text2);
+				font-size: 15px;
+				max-width: 400px;
+				margin: 0 auto;
+			}
+
+			/* VIEWS */
+			.view {
+				display: none;
+			}
+			.view.active {
+				display: block;
+			}
+
+			/* FORM */
+			.form-wrap {
+				max-width: 540px;
+				margin: 0 auto;
+				padding: 0 1.5rem 4rem;
+			}
+			.form-card {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: var(--r);
+				padding: 2rem;
+			}
+			.form-card h2 {
+				font-family: "Syne", sans-serif;
+				font-size: 1.05rem;
+				font-weight: 700;
+				margin-bottom: 24px;
+			}
+			.field {
+				margin-bottom: 18px;
+			}
+			label {
+				display: block;
+				font-size: 13px;
+				font-weight: 500;
+				color: var(--text2);
+				margin-bottom: 7px;
+			}
+			label .req {
+				color: var(--accent);
+				margin-left: 2px;
+			}
+			.label-opt {
+				font-size: 11px;
+				color: var(--text3);
+				font-weight: 400;
+				margin-left: 4px;
+			}
+			input,
+			select,
+			textarea {
+				width: 100%;
+				background: var(--surface2);
+				border: 1px solid var(--border);
+				border-radius: var(--r-sm);
+				color: var(--text);
+				font-family: "Figtree", sans-serif;
+				font-size: 15px;
+				padding: 11px 14px;
+				outline: none;
+				transition: border-color 0.2s;
+				-webkit-appearance: none;
+				appearance: none;
+			}
+			input::placeholder,
+			textarea::placeholder {
+				color: var(--text3);
+			}
+			input:focus,
+			select:focus,
+			textarea:focus {
+				border-color: rgba(62, 255, 214, 0.5);
+				box-shadow: 0 0 0 3px rgba(62, 255, 214, 0.06);
+			}
+			select {
+				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A8BA8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+				background-repeat: no-repeat;
+				background-position: right 12px center;
+				padding-right: 36px;
+				cursor: pointer;
+			}
+			select option {
+				background: #162035;
+				color: var(--text);
+			}
+			textarea {
+				resize: vertical;
+				min-height: 90px;
+			}
+			.row2 {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 12px;
+			}
+			.submit-btn {
+				width: 100%;
+				background: var(--accent);
+				color: #070c18;
+				border: none;
+				border-radius: var(--r-sm);
+				padding: 14px;
+				font-family: "Syne", sans-serif;
+				font-size: 15px;
+				font-weight: 700;
+				cursor: pointer;
+				letter-spacing: 0.02em;
+				transition:
+					opacity 0.2s,
+					transform 0.1s;
+				margin-top: 8px;
+			}
+			.submit-btn:hover {
+				opacity: 0.9;
+			}
+			.submit-btn:active {
+				transform: scale(0.99);
+			}
+			.submit-btn:disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+			.error-msg {
+				color: #ff6b6b;
+				font-size: 12px;
+				margin-top: 6px;
+				display: none;
+			}
+
+			/* DIRECTORY */
+			.dir-wrap {
+				max-width: 960px;
+				margin: 0 auto;
+				padding: 0 1.5rem 4rem;
+			}
+			.dir-top {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 20px;
+				flex-wrap: wrap;
+				gap: 12px;
+			}
+			.dir-top h2 {
+				font-family: "Syne", sans-serif;
+				font-size: 1rem;
+				font-weight: 700;
+				color: var(--text2);
+			}
+			.count-badge {
+				font-size: 12px;
+				background: rgba(62, 255, 214, 0.1);
+				color: var(--accent);
+				border-radius: 20px;
+				padding: 3px 10px;
+				font-weight: 600;
+			}
+			.search-wrap {
+				margin-bottom: 20px;
+				position: relative;
+			}
+			.search-wrap input {
+				padding-left: 40px;
+			}
+			.search-wrap::before {
+				content: "";
+				position: absolute;
+				left: 13px;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 16px;
+				height: 16px;
+				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A8BA8' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+				background-repeat: no-repeat;
+				background-size: contain;
+				pointer-events: none;
+			}
+			.cards-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+				gap: 16px;
+			}
+			.person-card {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: var(--r);
+				padding: 1.25rem;
+				transition: border-color 0.2s;
+			}
+			.person-card:hover {
+				border-color: rgba(62, 255, 214, 0.2);
+			}
+			.card-top {
+				display: flex;
+				align-items: flex-start;
+				gap: 12px;
+				margin-bottom: 12px;
+			}
+			.avatar {
+				width: 44px;
+				height: 44px;
+				border-radius: 50%;
+				background: var(--surface2);
+				border: 1px solid var(--border);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: "Syne", sans-serif;
+				font-size: 14px;
+				font-weight: 800;
+				color: var(--accent);
+				flex-shrink: 0;
+			}
+			.card-name {
+				font-family: "Syne", sans-serif;
+				font-size: 14px;
+				font-weight: 700;
+				margin-bottom: 2px;
+			}
+			.card-role {
+				font-size: 12px;
+				color: var(--text2);
+			}
+			.sector-badge {
+				display: inline-block;
+				font-size: 11px;
+				font-weight: 600;
+				padding: 3px 9px;
+				border-radius: 20px;
+				margin-bottom: 10px;
+				letter-spacing: 0.02em;
+			}
+			.card-intencion {
+				font-size: 13px;
+				color: var(--text2);
+				line-height: 1.55;
+				border-top: 1px solid var(--border);
+				padding-top: 10px;
+			}
+			.card-links {
+				display: flex;
+				gap: 10px;
+				margin-top: 10px;
+			}
+			.card-link {
+				font-size: 12px;
+				color: var(--text3);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+			.card-link:hover {
+				color: var(--accent);
+			}
+
+			/* Loading / empty */
+			.loading {
+				text-align: center;
+				padding: 3rem;
+				color: var(--text3);
+				font-size: 14px;
+			}
+			.spinner {
+				width: 22px;
+				height: 22px;
+				border: 2px solid var(--border);
+				border-top-color: var(--accent);
+				border-radius: 50%;
+				animation: spin 0.7s linear infinite;
+				margin: 0 auto 12px;
+			}
+			@keyframes spin {
+				to {
+					transform: rotate(360deg);
+				}
+			}
+
+			/* Toast */
+			.toast {
+				position: fixed;
+				bottom: 2rem;
+				left: 50%;
+				transform: translateX(-50%) translateY(20px);
+				background: var(--surface2);
+				border: 1px solid rgba(62, 255, 214, 0.3);
+				color: var(--text);
+				font-size: 14px;
+				padding: 12px 22px;
+				border-radius: 30px;
+				opacity: 0;
+				transition:
+					opacity 0.3s,
+					transform 0.3s;
+				pointer-events: none;
+				white-space: nowrap;
+				z-index: 999;
+			}
+			.toast.show {
+				opacity: 1;
+				transform: translateX(-50%) translateY(0);
+			}
+
+			@media (max-width: 600px) {
+				.row2 {
+					grid-template-columns: 1fr;
+				}
+				.form-card {
+					padding: 1.25rem;
+				}
+				.cards-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<div class="event-tag">Mar del Plata · 2026</div>
+			<h1 class="event-title">CESSI <span>MDQ</span></h1>
+			<p class="event-sub">
+				Presentate, contá de qué venís y conectá con otros asistentes.
+			</p>
+		</header>
+
+		<!-- FORM VIEW -->
+		<div id="form-view" class="view active">
+			<div class="form-wrap">
+				<div class="form-card">
+					<h2>Tu presentación</h2>
+
+					<div class="row2">
+						<div class="field">
+							<label>Nombre <span class="req">*</span></label>
+							<input type="text" id="f-nombre" placeholder="Tu nombre" />
+						</div>
+						<div class="field">
+							<label>Apellido <span class="req">*</span></label>
+							<input type="text" id="f-apellido" placeholder="Tu apellido" />
+						</div>
+					</div>
+
+					<div class="row2">
+						<div class="field">
+							<label>Empresa <span class="req">*</span></label>
+							<input
+								type="text"
+								id="f-empresa"
+								placeholder="Nombre de empresa"
+							/>
+						</div>
+						<div class="field">
+							<label>Rol <span class="req">*</span></label>
+							<input type="text" id="f-rol" placeholder="Tu posición" />
+						</div>
+					</div>
+
+					<div class="field">
+						<label>Sector <span class="req">*</span></label>
+						<select id="f-sector">
+							<option value="" disabled selected>Seleccioná tu sector</option>
+							<option>Banca y Fintech</option>
+							<option>Seguros</option>
+							<option>Salud</option>
+							<option>Real Estate</option>
+							<option>Estado</option>
+							<option>Telecomunicaciones</option>
+							<option>Cripto</option>
+							<option>RRHH</option>
+							<option>Oil &amp; Gas</option>
+							<option>Otros</option>
+						</select>
+					</div>
+
+					<div class="field">
+						<label
+							>¿Qué buscás / intencionás en el evento?
+							<span class="req">*</span></label
+						>
+						<textarea
+							id="f-intencion"
+							placeholder="Ej: Busco partners para integrar firma digital en onboarding bancario..."
+						></textarea>
+					</div>
+
+					<div class="row2">
+						<div class="field">
+							<label>LinkedIn <span class="label-opt">opcional</span></label>
+							<input
+								type="text"
+								id="f-linkedin"
+								placeholder="linkedin.com/in/..."
+							/>
+						</div>
+						<div class="field">
+							<label>WhatsApp <span class="label-opt">opcional</span></label>
+							<input type="text" id="f-whatsapp" placeholder="+54 9 ..." />
+						</div>
+					</div>
+
+					<div id="form-error" class="error-msg">
+						Completá los campos obligatorios antes de continuar.
+					</div>
+					<button class="submit-btn" id="submit-btn" onclick="handleSubmit()">
+						Publicar mi presentación →
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- DIRECTORY VIEW -->
+		<div id="dir-view" class="view">
+			<div class="dir-wrap">
+				<div class="dir-top">
+					<h2>Asistentes</h2>
+					<span class="count-badge" id="count-badge">0 personas</span>
+				</div>
+				<div class="search-wrap">
+					<input
+						type="text"
+						id="search-input"
+						placeholder="Buscar por nombre, empresa o sector..."
+						oninput="filterCards()"
+					/>
+				</div>
+				<div class="cards-grid" id="cards-grid">
+					<div class="loading">
+						<div class="spinner"></div>
+						Cargando asistentes...
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="toast" id="toast"></div>
+
+		<script>
+			// ─── CONFIGURACIÓN — reemplazá estos dos valores antes de deployar ──────────
+			const SCRIPT_URL =
+				"https://script.google.com/macros/s/AKfycbzfTI3uoDxUXqphsH-ffx7l07LD-u-CT40CQrvr_wW2hfY3XyundHFKoAHtcFgyMuhwKA/exec";
+			const SHEET_CSV_URL =
+				"https://docs.google.com/spreadsheets/d/1Y0msO_-b8VMULOMAJoE07Lz1guZVxU5QMCWA5hokTKc/edit?usp=sharing";
+			// ─────────────────────────────────────────────────────────────────────────────
+
+			const STORAGE_KEY = "cessi_mdq_2026_done";
+
+			const SECTOR_COLORS = {
+				"Banca y Fintech": { bg: "rgba(55,138,221,.15)", color: "#85B7EB" },
+				Seguros: { bg: "rgba(108,99,255,.15)", color: "#A89BFF" },
+				Salud: { bg: "rgba(62,255,214,.12)", color: "#3EFFD6" },
+				"Real Estate": { bg: "rgba(239,159,39,.15)", color: "#F0B96C" },
+				Estado: { bg: "rgba(136,135,128,.15)", color: "#B4B2A9" },
+				Telecomunicaciones: { bg: "rgba(29,158,117,.15)", color: "#5DCAA5" },
+				Cripto: { bg: "rgba(250,199,117,.12)", color: "#FAC775" },
+				RRHH: { bg: "rgba(212,83,126,.15)", color: "#ED93B1" },
+				"Oil & Gas": { bg: "rgba(186,117,23,.15)", color: "#D4A06A" },
+				Otros: { bg: "rgba(100,100,110,.15)", color: "#9A9AA8" },
+			};
+
+			let allPeople = [];
+
+			function ini(n, a) {
+				return (
+					((n || "")[0] || "").toUpperCase() +
+					((a || "")[0] || "").toUpperCase()
+				);
+			}
+
+			function showView(id) {
+				document
+					.querySelectorAll(".view")
+					.forEach((v) => v.classList.remove("active"));
+				document.getElementById(id).classList.add("active");
+			}
+
+			function showToast(msg) {
+				const t = document.getElementById("toast");
+				t.textContent = msg;
+				t.classList.add("show");
+				setTimeout(() => t.classList.remove("show"), 3200);
+			}
+
+			async function handleSubmit() {
+				const v = (id) => document.getElementById(id).value.trim();
+				const nombre = v("f-nombre");
+				const apellido = v("f-apellido");
+				const empresa = v("f-empresa");
+				const rol = v("f-rol");
+				const sector = document.getElementById("f-sector").value;
+				const intencion = v("f-intencion");
+				const linkedin = v("f-linkedin");
+				const whatsapp = v("f-whatsapp");
+
+				const errEl = document.getElementById("form-error");
+				if (!nombre || !apellido || !empresa || !rol || !sector || !intencion) {
+					errEl.style.display = "block";
+					return;
+				}
+				errEl.style.display = "none";
+
+				const btn = document.getElementById("submit-btn");
+				btn.disabled = true;
+				btn.textContent = "Publicando...";
+
+				const payload = {
+					nombre,
+					apellido,
+					empresa,
+					rol,
+					sector,
+					intencion,
+					linkedin,
+					whatsapp,
+				};
+
+				try {
+					await fetch(SCRIPT_URL, {
+						method: "POST",
+						mode: "no-cors",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify(payload),
+					});
+				} catch (e) {
+					/* no-cors: ignorar error de lectura */
+				}
+
+				localStorage.setItem(STORAGE_KEY, "1");
+				localStorage.setItem("cessi_mdq_own", JSON.stringify(payload));
+
+				showView("dir-view");
+				showToast("¡Presentación publicada!");
+				loadDirectory();
+			}
+
+			async function loadDirectory() {
+				const grid = document.getElementById("cards-grid");
+				grid.innerHTML =
+					'<div class="loading"><div class="spinner"></div>Cargando asistentes...</div>';
+
+				try {
+					const res = await fetch(SHEET_CSV_URL + "&cb=" + Date.now());
+					const text = await res.text();
+					allPeople = parseCSV(text);
+				} catch (e) {
+					const own = JSON.parse(
+						localStorage.getItem("cessi_mdq_own") || "null",
+					);
+					allPeople = own ? [own] : [];
+				}
+
+				renderCards(allPeople);
+			}
+
+			function parseCSV(text) {
+				const lines = text.split("\n").filter((l) => l.trim());
+				if (lines.length < 2) return [];
+				return lines
+					.slice(1)
+					.map((line) => {
+						const cols = [];
+						let cur = "",
+							inQ = false;
+						for (let i = 0; i < line.length; i++) {
+							if (line[i] === '"') {
+								inQ = !inQ;
+							} else if (line[i] === "," && !inQ) {
+								cols.push(cur.trim());
+								cur = "";
+							} else {
+								cur += line[i];
+							}
+						}
+						cols.push(cur.trim());
+						return {
+							nombre: cols[1] || "",
+							apellido: cols[2] || "",
+							empresa: cols[3] || "",
+							rol: cols[4] || "",
+							sector: cols[5] || "",
+							intencion: cols[6] || "",
+							linkedin: cols[7] || "",
+							whatsapp: cols[8] || "",
+						};
+					})
+					.filter((p) => p.nombre);
+			}
+
+			function renderCards(people) {
+				const grid = document.getElementById("cards-grid");
+				const badge = document.getElementById("count-badge");
+				badge.textContent = `${people.length} persona${people.length !== 1 ? "s" : ""}`;
+
+				if (!people.length) {
+					grid.innerHTML =
+						'<div class="loading">Todavía no hay presentaciones publicadas.</div>';
+					return;
+				}
+
+				grid.innerHTML = people
+					.map((p) => {
+						const sc = SECTOR_COLORS[p.sector] || SECTOR_COLORS["Otros"];
+						const liLink = p.linkedin
+							? `<a class="card-link" href="${p.linkedin.startsWith("http") ? p.linkedin : "https://" + p.linkedin}" target="_blank">↗ LinkedIn</a>`
+							: "";
+						const waLink = p.whatsapp
+							? `<a class="card-link" href="https://wa.me/${p.whatsapp.replace(/\D/g, "")}" target="_blank">↗ WhatsApp</a>`
+							: "";
+						return `
+<div class="person-card">
+  <div class="card-top">
+    <div class="avatar">${ini(p.nombre, p.apellido)}</div>
+    <div>
+      <div class="card-name">${p.nombre} ${p.apellido}</div>
+      <div class="card-role">${p.rol} · ${p.empresa}</div>
+    </div>
+  </div>
+  <span class="sector-badge" style="background:${sc.bg};color:${sc.color}">${p.sector}</span>
+  <div class="card-intencion">${p.intencion}</div>
+  ${liLink || waLink ? `<div class="card-links">${liLink}${waLink}</div>` : ""}
+</div>`;
+					})
+					.join("");
+			}
+
+			function filterCards() {
+				const q = document.getElementById("search-input").value.toLowerCase();
+				if (!q) {
+					renderCards(allPeople);
+					return;
+				}
+				renderCards(
+					allPeople.filter((p) =>
+						[p.nombre, p.apellido, p.empresa, p.sector, p.rol].some((v) =>
+							v.toLowerCase().includes(q),
+						),
+					),
+				);
+			}
+
+			window.addEventListener("DOMContentLoaded", () => {
+				if (localStorage.getItem(STORAGE_KEY)) {
+					showView("dir-view");
+					loadDirectory();
+				}
+			});
+		</script>
+	</body>
+</html>
