@@ -5,8 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>CESSI MDQ 2026 — Comunidad del Evento</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:wght@400;500;700&display=swap"
 			rel="stylesheet"
 		/>
 		<style>
@@ -22,19 +23,19 @@
 				--surface: #0f1829;
 				--surface2: #162035;
 				--border: rgba(255, 255, 255, 0.07);
-				--accent: #3effd6;
-				--accent2: #6c63ff;
+				--accent: #3041d5;
 				--text: #e8edf5;
-				--text2: #7a8ba8;
-				--text3: #4a5870;
+				--text2: #7f828e;
+				--text3: #4a5060;
+				--black: #36383a;
 				--r: 16px;
 				--r-sm: 8px;
 			}
 			body {
 				background: var(--bg);
 				color: var(--text);
-				font-family: "Figtree", sans-serif;
-				font-size: 15px;
+				font-family: "Open Sans", sans-serif;
+				font-size: 1rem;
 				line-height: 1.6;
 				min-height: 100vh;
 			}
@@ -56,28 +57,28 @@
 				height: 250px;
 				background: radial-gradient(
 					ellipse at center,
-					rgba(62, 255, 214, 0.08) 0%,
+					rgba(48, 65, 213, 0.15) 0%,
 					transparent 70%
 				);
 				pointer-events: none;
 			}
 			.event-tag {
 				display: inline-block;
-				font-family: "Syne", sans-serif;
+				font-family: "Montserrat", sans-serif;
 				font-size: 11px;
 				font-weight: 600;
 				letter-spacing: 0.15em;
 				text-transform: uppercase;
 				color: var(--accent);
-				border: 1px solid rgba(62, 255, 214, 0.3);
+				border: 1px solid rgba(48, 65, 213, 0.3);
 				border-radius: 20px;
 				padding: 4px 14px;
 				margin-bottom: 14px;
 			}
 			.event-title {
-				font-family: "Syne", sans-serif;
-				font-size: clamp(2.2rem, 10vw, 4rem);
-				font-weight: 800;
+				font-family: "Montserrat", sans-serif;
+				font-size: clamp(2.2rem, 10vw, 3.4375rem);
+				font-weight: 600;
 				letter-spacing: -0.02em;
 				line-height: 1.05;
 				margin-bottom: 10px;
@@ -87,8 +88,8 @@
 			}
 			.event-sub {
 				color: var(--text2);
-				font-size: 14px;
-				max-width: 400px;
+				font-size: clamp(1.1rem, 4vw, 1.625rem);
+				max-width: 480px;
 				margin: 0 auto;
 			}
 
@@ -113,8 +114,8 @@
 				padding: 1.25rem;
 			}
 			.form-card h2 {
-				font-family: "Syne", sans-serif;
-				font-size: 1.05rem;
+				font-family: "Open Sans", sans-serif;
+				font-size: 1.875rem;
 				font-weight: 700;
 				margin-bottom: 20px;
 			}
@@ -146,7 +147,7 @@
 				border: 1px solid var(--border);
 				border-radius: var(--r-sm);
 				color: var(--text);
-				font-family: "Figtree", sans-serif;
+				font-family: "Open Sans", sans-serif;
 				font-size: 16px; /* evita zoom en iOS */
 				padding: 13px 14px;
 				outline: none;
@@ -161,8 +162,8 @@
 			input:focus,
 			select:focus,
 			textarea:focus {
-				border-color: rgba(62, 255, 214, 0.5);
-				box-shadow: 0 0 0 3px rgba(62, 255, 214, 0.06);
+				border-color: rgba(48, 65, 213, 0.5);
+				box-shadow: 0 0 0 3px rgba(48, 65, 213, 0.06);
 			}
 			select {
 				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A8BA8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
@@ -187,11 +188,11 @@
 			.submit-btn {
 				width: 100%;
 				background: var(--accent);
-				color: #070c18;
+				color: #ffffff;
 				border: none;
 				border-radius: var(--r-sm);
 				padding: 16px;
-				font-family: "Syne", sans-serif;
+				font-family: "Montserrat", sans-serif;
 				font-size: 15px;
 				font-weight: 700;
 				cursor: pointer;
@@ -232,14 +233,14 @@
 				gap: 10px;
 			}
 			.dir-top h2 {
-				font-family: "Syne", sans-serif;
-				font-size: 1rem;
+				font-family: "Open Sans", sans-serif;
+				font-size: 1.875rem;
 				font-weight: 700;
 				color: var(--text2);
 			}
 			.count-badge {
 				font-size: 12px;
-				background: rgba(62, 255, 214, 0.1);
+				background: rgba(48, 65, 213, 0.1);
 				color: var(--accent);
 				border-radius: 20px;
 				padding: 3px 10px;
@@ -292,14 +293,14 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-family: "Syne", sans-serif;
+				font-family: "Montserrat", sans-serif;
 				font-size: 14px;
 				font-weight: 800;
 				color: var(--accent);
 				flex-shrink: 0;
 			}
 			.card-name {
-				font-family: "Syne", sans-serif;
+				font-family: "Montserrat", sans-serif;
 				font-size: 14px;
 				font-weight: 700;
 				margin-bottom: 2px;
@@ -318,7 +319,7 @@
 				letter-spacing: 0.02em;
 			}
 			.card-intencion {
-				font-size: 13px;
+				font-size: 1.625rem;
 				color: var(--text2);
 				line-height: 1.55;
 				border-top: 1px solid var(--border);
@@ -365,7 +366,7 @@
 				left: 50%;
 				transform: translateX(-50%) translateY(20px);
 				background: var(--surface2);
-				border: 1px solid rgba(62, 255, 214, 0.3);
+				border: 1px solid rgba(48, 65, 213, 0.3);
 				color: var(--text);
 				font-size: 14px;
 				padding: 12px 22px;
@@ -428,7 +429,7 @@
 					gap: 16px;
 				}
 				.person-card:hover {
-					border-color: rgba(62, 255, 214, 0.2);
+					border-color: rgba(48, 65, 213, 0.2);
 				}
 				.card-link:hover {
 					color: var(--accent);
