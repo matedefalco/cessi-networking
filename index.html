@@ -705,7 +705,7 @@
 							? `<a class="card-link" href="${p.linkedin.startsWith("http") ? p.linkedin : "https://" + p.linkedin}" target="_blank">↗ LinkedIn</a>`
 							: "";
 						const waLink = p.whatsapp
-							? `<a class="card-link" href="https://wa.me/${p.whatsapp.replace(/\D/g, "")}" target="_blank">↗ WhatsApp</a>`
+							? `<a class="card-link" href="https://wa.me/${String(p.whatsapp).replace(/\D/g, "")}" target="_blank">↗ WhatsApp</a>`
 							: "";
 						const emailLink = p.email
 							? `<a class="card-link" href="mailto:${p.email}" target="_blank">↗ Email</a>`
