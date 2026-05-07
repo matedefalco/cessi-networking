@@ -677,9 +677,8 @@
 					'<div class="loading"><div class="spinner"></div>Cargando asistentes...</div>';
 
 				try {
-					const res = await fetch(SHEET_CSV_URL + "&cb=" + Date.now());
-					const text = await res.text();
-					allPeople = parseCSV(text);
+					const res = await fetch(SCRIPT_URL + "?cb=" + Date.now());
+					allPeople = await res.json();
 				} catch (e) {
 					const own = JSON.parse(
 						localStorage.getItem("cessi_mdq_own") || "null",
@@ -688,41 +687,6 @@
 				}
 
 				renderCards(allPeople);
-			}
-
-			function parseCSV(text) {
-				const lines = text.split("\n").filter((l) => l.trim());
-				if (lines.length < 2) return [];
-				return lines
-					.slice(1)
-					.map((line) => {
-						const cols = [];
-						let cur = "",
-							inQ = false;
-						for (let i = 0; i < line.length; i++) {
-							if (line[i] === '"') {
-								inQ = !inQ;
-							} else if (line[i] === "," && !inQ) {
-								cols.push(cur.trim());
-								cur = "";
-							} else {
-								cur += line[i];
-							}
-						}
-						cols.push(cur.trim());
-						return {
-							nombre: cols[1] || "",
-							apellido: cols[2] || "",
-							empresa: cols[3] || "",
-							rol: cols[4] || "",
-							sector: cols[5] || "",
-							intencion: cols[6] || "",
-							linkedin: cols[7] || "",
-							whatsapp: cols[8] || "",
-							email: cols[9] || "",
-						};
-					})
-					.filter((p) => p.nombre);
 			}
 
 			function renderCards(people) {
