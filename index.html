@@ -489,7 +489,9 @@
 						<select id="f-sector">
 							<option value="" disabled selected>Seleccioná tu sector</option>
 							<option>Banca y Fintech</option>
+							<option>IT</option>
 							<option>Seguros</option>
+							<option>Software</option>
 							<option>Salud</option>
 							<option>Real Estate</option>
 							<option>Estado</option>
@@ -525,6 +527,10 @@
 							<label>WhatsApp <span class="label-opt">opcional</span></label>
 							<input type="text" id="f-whatsapp" placeholder="+54 9 ..." />
 						</div>
+					</div>
+					<div class="field">
+						<label>Email <span class="label-opt">opcional</span></label>
+						<input type="email" id="f-email" placeholder="tu@email.com" />
 					</div>
 
 					<div id="form-error" class="error-msg">
@@ -575,7 +581,9 @@
 
 			const SECTOR_COLORS = {
 				"Banca y Fintech": { bg: "rgba(55,138,221,.15)", color: "#85B7EB" },
+				IT: { bg: "rgba(48,65,213,.15)", color: "#8C9BF5" },
 				Seguros: { bg: "rgba(108,99,255,.15)", color: "#A89BFF" },
+				Software: { bg: "rgba(80,120,240,.15)", color: "#90AAFF" },
 				Salud: { bg: "rgba(62,255,214,.12)", color: "#3EFFD6" },
 				"Real Estate": { bg: "rgba(239,159,39,.15)", color: "#F0B96C" },
 				Estado: { bg: "rgba(136,135,128,.15)", color: "#B4B2A9" },
@@ -619,6 +627,7 @@
 				const intencion = v("f-intencion");
 				const linkedin = v("f-linkedin");
 				const whatsapp = v("f-whatsapp");
+				const email = v("f-email");
 
 				const errEl = document.getElementById("form-error");
 				if (!nombre || !apellido || !empresa || !rol || !sector || !intencion) {
@@ -640,6 +649,7 @@
 					intencion,
 					linkedin,
 					whatsapp,
+					email,
 				};
 
 				try {
@@ -709,6 +719,7 @@
 							intencion: cols[6] || "",
 							linkedin: cols[7] || "",
 							whatsapp: cols[8] || "",
+							email: cols[9] || "",
 						};
 					})
 					.filter((p) => p.nombre);
@@ -734,6 +745,9 @@
 						const waLink = p.whatsapp
 							? `<a class="card-link" href="https://wa.me/${p.whatsapp.replace(/\D/g, "")}" target="_blank">↗ WhatsApp</a>`
 							: "";
+						const emailLink = p.email
+							? `<a class="card-link" href="mailto:${p.email}" target="_blank">↗ Email</a>`
+							: "";
 						return `
 <div class="person-card">
   <div class="card-top">
@@ -745,7 +759,7 @@
   </div>
   <span class="sector-badge" style="background:${sc.bg};color:${sc.color}">${p.sector}</span>
   <div class="card-intencion">${p.intencion}</div>
-  ${liLink || waLink ? `<div class="card-links">${liLink}${waLink}</div>` : ""}
+  ${liLink || waLink || emailLink ? `<div class="card-links">${liLink}${waLink}${emailLink}</div>` : ""}
 </div>`;
 					})
 					.join("");
