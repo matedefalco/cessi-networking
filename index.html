@@ -148,7 +148,7 @@
 				border-radius: var(--r-sm);
 				color: var(--text);
 				font-family: "Open Sans", sans-serif;
-				font-size: 16px; /* evita zoom en iOS */
+				font-size: 16px;
 				padding: 13px 14px;
 				outline: none;
 				transition: border-color 0.2s;
@@ -228,7 +228,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				margin-bottom: 16px;
+				margin-bottom: 14px;
 				flex-wrap: wrap;
 				gap: 10px;
 			}
@@ -237,6 +237,9 @@
 				font-size: 1.875rem;
 				font-weight: 700;
 				color: var(--text2);
+				display: flex;
+				align-items: center;
+				gap: 10px;
 			}
 			.count-badge {
 				font-size: 12px;
@@ -246,8 +249,16 @@
 				padding: 3px 10px;
 				font-weight: 600;
 			}
+
+			/* Controls row: search + view toggle */
+			.dir-controls {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				margin-bottom: 12px;
+			}
 			.search-wrap {
-				margin-bottom: 16px;
+				flex: 1;
 				position: relative;
 			}
 			.search-wrap input {
@@ -266,6 +277,71 @@
 				background-size: contain;
 				pointer-events: none;
 			}
+
+			/* View toggle buttons */
+			.view-toggle {
+				display: flex;
+				gap: 4px;
+				flex-shrink: 0;
+			}
+			.vt-btn {
+				width: 38px;
+				height: 38px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: var(--surface2);
+				border: 1px solid var(--border);
+				border-radius: var(--r-sm);
+				color: var(--text3);
+				cursor: pointer;
+				transition: all 0.15s;
+				-webkit-tap-highlight-color: transparent;
+			}
+			.vt-btn.active {
+				background: rgba(48, 65, 213, 0.15);
+				border-color: rgba(48, 65, 213, 0.35);
+				color: #8c9bf5;
+			}
+
+			/* Filter tags */
+			.filters-wrap {
+				display: flex;
+				gap: 7px;
+				overflow-x: auto;
+				margin-bottom: 16px;
+				padding-bottom: 2px;
+				scrollbar-width: none;
+				-ms-overflow-style: none;
+			}
+			.filters-wrap::-webkit-scrollbar {
+				display: none;
+			}
+			.filter-tag {
+				flex-shrink: 0;
+				display: inline-flex;
+				align-items: center;
+				gap: 5px;
+				font-size: 12px;
+				font-weight: 600;
+				font-family: "Open Sans", sans-serif;
+				padding: 5px 12px;
+				border-radius: 20px;
+				border: 1px solid var(--border);
+				background: transparent;
+				color: var(--text2);
+				cursor: pointer;
+				transition: all 0.15s;
+				white-space: nowrap;
+				-webkit-tap-highlight-color: transparent;
+			}
+			.ft-count {
+				font-size: 10px;
+				font-weight: 400;
+				opacity: 0.65;
+			}
+
+			/* Cards grid */
 			.cards-grid {
 				display: grid;
 				grid-template-columns: 1fr;
@@ -319,7 +395,7 @@
 				letter-spacing: 0.02em;
 			}
 			.card-intencion {
-				font-size: 1.625rem;
+				font-size: 13px;
 				color: var(--text2);
 				line-height: 1.55;
 				border-top: 1px solid var(--border);
@@ -335,6 +411,104 @@
 				color: var(--text3);
 				text-decoration: none;
 				transition: color 0.2s;
+			}
+
+			/* Table */
+			.table-wrap {
+				overflow-x: auto;
+				border: 1px solid var(--border);
+				border-radius: var(--r);
+				background: var(--surface);
+			}
+			.dir-table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 13px;
+			}
+			.dir-table th {
+				text-align: left;
+				font-size: 10px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--text3);
+				padding: 12px 14px;
+				border-bottom: 1px solid var(--border);
+				white-space: nowrap;
+				background: var(--surface);
+			}
+			.dir-table td {
+				padding: 11px 14px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+				vertical-align: middle;
+			}
+			.dir-table tbody tr:last-child td {
+				border-bottom: none;
+			}
+			.dir-table tbody tr:hover td {
+				background: var(--surface2);
+			}
+			.tbl-person {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+			.tbl-avatar {
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				background: var(--surface2);
+				border: 1px solid var(--border);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: "Montserrat", sans-serif;
+				font-size: 11px;
+				font-weight: 800;
+				color: var(--accent);
+				flex-shrink: 0;
+			}
+			.tbl-name {
+				font-weight: 600;
+				font-size: 13px;
+				white-space: nowrap;
+				color: var(--text);
+			}
+			.tbl-company {
+				color: var(--text2);
+				font-size: 13px;
+				white-space: nowrap;
+				max-width: 140px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			.tbl-rol {
+				color: var(--text2);
+				font-size: 12px;
+				white-space: nowrap;
+				max-width: 130px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			.tbl-intencion {
+				color: var(--text2);
+				font-size: 12px;
+				max-width: 200px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.tbl-links {
+				display: flex;
+				gap: 8px;
+				white-space: nowrap;
+			}
+			.tbl-link {
+				font-size: 11px;
+				color: var(--text3);
+				text-decoration: none;
+				transition: color 0.15s;
+				white-space: nowrap;
 			}
 
 			/* Loading / empty */
@@ -419,10 +593,7 @@
 					padding: 0 1.5rem 4rem;
 				}
 				.dir-top {
-					margin-bottom: 20px;
-				}
-				.search-wrap {
-					margin-bottom: 20px;
+					margin-bottom: 16px;
 				}
 				.cards-grid {
 					grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -434,11 +605,31 @@
 				.card-link:hover {
 					color: var(--accent);
 				}
+				.tbl-link:hover {
+					color: var(--accent);
+				}
+				.vt-btn:hover:not(.active) {
+					border-color: rgba(255, 255, 255, 0.15);
+					color: var(--text2);
+				}
+				.filter-tag:hover {
+					border-color: rgba(255, 255, 255, 0.15);
+					color: var(--text);
+				}
 				.submit-btn:hover {
 					opacity: 0.9;
 				}
 				.toast {
 					bottom: 2rem;
+				}
+				.tbl-company {
+					max-width: 180px;
+				}
+				.tbl-rol {
+					max-width: 160px;
+				}
+				.tbl-intencion {
+					max-width: 280px;
 				}
 			}
 		</style>
@@ -547,22 +738,69 @@
 		<div id="dir-view" class="view">
 			<div class="dir-wrap">
 				<div class="dir-top">
-					<h2>Asistentes</h2>
-					<span class="count-badge" id="count-badge">0 personas</span>
+					<h2>Asistentes <span class="count-badge" id="count-badge">0</span></h2>
 				</div>
-				<div class="search-wrap">
-					<input
-						type="text"
-						id="search-input"
-						placeholder="Buscar por nombre, empresa o sector..."
-						oninput="filterCards()"
-					/>
+
+				<!-- Search + view toggle -->
+				<div class="dir-controls">
+					<div class="search-wrap">
+						<input
+							type="text"
+							id="search-input"
+							placeholder="Buscar por nombre, empresa o rol..."
+							oninput="filterDirectory()"
+						/>
+					</div>
+					<div class="view-toggle">
+						<button class="vt-btn active" id="vt-cards" title="Vista cards">
+							<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect x="0" y="0" width="6" height="6" rx="1.5" fill="currentColor"/>
+								<rect x="8" y="0" width="6" height="6" rx="1.5" fill="currentColor"/>
+								<rect x="0" y="8" width="6" height="6" rx="1.5" fill="currentColor"/>
+								<rect x="8" y="8" width="6" height="6" rx="1.5" fill="currentColor"/>
+							</svg>
+						</button>
+						<button class="vt-btn" id="vt-table" title="Vista tabla">
+							<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="1.5" cy="2.5" r="1.5" fill="currentColor"/>
+								<rect x="4.5" y="1.5" width="9.5" height="2" rx="1" fill="currentColor"/>
+								<circle cx="1.5" cy="7" r="1.5" fill="currentColor"/>
+								<rect x="4.5" y="6" width="9.5" height="2" rx="1" fill="currentColor"/>
+								<circle cx="1.5" cy="11.5" r="1.5" fill="currentColor"/>
+								<rect x="4.5" y="10.5" width="9.5" height="2" rx="1" fill="currentColor"/>
+							</svg>
+						</button>
+					</div>
 				</div>
+
+				<!-- Sector filter tags -->
+				<div class="filters-wrap" id="filters-wrap">
+					<!-- populated by JS after data loads -->
+				</div>
+
+				<!-- Cards grid -->
 				<div class="cards-grid" id="cards-grid">
 					<div class="loading">
 						<div class="spinner"></div>
 						Cargando asistentes...
 					</div>
+				</div>
+
+				<!-- Table view -->
+				<div class="table-wrap" id="table-wrap" style="display:none">
+					<table class="dir-table" id="dir-table">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Empresa</th>
+								<th>Rol</th>
+								<th>Sector</th>
+								<th>Intención</th>
+								<th>Contacto</th>
+							</tr>
+						</thead>
+						<tbody id="table-body"></tbody>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -570,10 +808,8 @@
 		<div class="toast" id="toast"></div>
 
 		<script>
-			// ─── CONFIGURACIÓN — reemplazá estos dos valores antes de deployar ──────────
 			const SCRIPT_URL =
 				"https://script.google.com/macros/s/AKfycbzObyF_83BYBRSOyPQrjk76eYIwLQKfNlFqI1xPqIAMj-VWuqxOpLDIYKfyr0pJ-2-A5g/exec";
-			// ─────────────────────────────────────────────────────────────────────────────
 
 			const STORAGE_KEY = "cessi_mdq_2026_done";
 
@@ -593,6 +829,8 @@
 			};
 
 			let allPeople = [];
+			let currentSector = "";
+			let currentView = "cards";
 
 			function ini(n, a) {
 				return (
@@ -614,6 +852,206 @@
 				t.classList.add("show");
 				setTimeout(() => t.classList.remove("show"), 3200);
 			}
+
+			// ─── View toggle ──────────────────────────────────────────────────────────
+
+			function setView(view) {
+				currentView = view;
+				document.getElementById("vt-cards").classList.toggle("active", view === "cards");
+				document.getElementById("vt-table").classList.toggle("active", view === "table");
+				renderDirectory(getFiltered());
+			}
+
+			document.getElementById("vt-cards").addEventListener("click", () => setView("cards"));
+			document.getElementById("vt-table").addEventListener("click", () => setView("table"));
+
+			// ─── Sector filter tags ───────────────────────────────────────────────────
+
+			function buildFilters() {
+				const wrap = document.getElementById("filters-wrap");
+				const counts = {};
+				allPeople.forEach((p) => {
+					counts[p.sector] = (counts[p.sector] || 0) + 1;
+				});
+
+				const btns = [];
+
+				const allActive = currentSector === "";
+				btns.push(
+					`<button class="filter-tag" data-sector="" style="${
+						allActive
+							? "background:rgba(48,65,213,.15);color:#8C9BF5;border-color:rgba(48,65,213,.3)"
+							: ""
+					}">Todos <span class="ft-count">${allPeople.length}</span></button>`
+				);
+
+				Object.keys(SECTOR_COLORS).forEach((s) => {
+					const cnt = counts[s] || 0;
+					if (!cnt) return;
+					const sc = SECTOR_COLORS[s];
+					const isActive = currentSector === s;
+					btns.push(
+						`<button class="filter-tag" data-sector="${escAttr(s)}" style="${
+							isActive
+								? `background:${sc.bg};color:${sc.color};border-color:${sc.color}55`
+								: ""
+						}">${s} <span class="ft-count">${cnt}</span></button>`
+					);
+				});
+
+				wrap.innerHTML = btns.join("");
+			}
+
+			document.getElementById("filters-wrap").addEventListener("click", (e) => {
+				const btn = e.target.closest(".filter-tag");
+				if (!btn) return;
+				currentSector = btn.dataset.sector;
+				buildFilters();
+				renderDirectory(getFiltered());
+			});
+
+			// ─── Filtering ────────────────────────────────────────────────────────────
+
+			function getFiltered() {
+				const q = document.getElementById("search-input").value.toLowerCase();
+				return allPeople.filter((p) => {
+					const matchesSector = !currentSector || p.sector === currentSector;
+					const matchesSearch =
+						!q ||
+						[p.nombre, p.apellido, p.empresa, p.sector, p.rol].some((v) =>
+							(v || "").toLowerCase().includes(q)
+						);
+					return matchesSector && matchesSearch;
+				});
+			}
+
+			function filterDirectory() {
+				renderDirectory(getFiltered());
+			}
+
+			// ─── Rendering ────────────────────────────────────────────────────────────
+
+			function renderDirectory(people) {
+				const badge = document.getElementById("count-badge");
+				badge.textContent = `${people.length} persona${people.length !== 1 ? "s" : ""}`;
+
+				const grid = document.getElementById("cards-grid");
+				const tableWrap = document.getElementById("table-wrap");
+
+				if (currentView === "cards") {
+					grid.style.display = "";
+					tableWrap.style.display = "none";
+					renderCards(people);
+				} else {
+					grid.style.display = "none";
+					tableWrap.style.display = "";
+					renderTable(people);
+				}
+			}
+
+			function renderCards(people) {
+				const grid = document.getElementById("cards-grid");
+
+				if (!people.length) {
+					grid.innerHTML =
+						'<div class="loading">No hay resultados para esa búsqueda.</div>';
+					return;
+				}
+
+				grid.innerHTML = people
+					.map((p) => {
+						const sc = SECTOR_COLORS[p.sector] || SECTOR_COLORS["Otros"];
+						const liLink = p.linkedin
+							? `<a class="card-link" href="${p.linkedin.startsWith("http") ? p.linkedin : "https://" + p.linkedin}" target="_blank">↗ LinkedIn</a>`
+							: "";
+						const waLink = p.whatsapp
+							? `<a class="card-link" href="https://wa.me/${String(p.whatsapp).replace(/\D/g, "")}" target="_blank">↗ WhatsApp</a>`
+							: "";
+						const emailLink = p.email
+							? `<a class="card-link" href="mailto:${p.email}" target="_blank">↗ Email</a>`
+							: "";
+						return `
+<div class="person-card">
+  <div class="card-top">
+    <div class="avatar">${ini(p.nombre, p.apellido)}</div>
+    <div>
+      <div class="card-name">${p.nombre} ${p.apellido}</div>
+      <div class="card-role">${p.rol} · ${p.empresa}</div>
+    </div>
+  </div>
+  <span class="sector-badge" style="background:${sc.bg};color:${sc.color}">${p.sector}</span>
+  <div class="card-intencion">${p.intencion}</div>
+  ${liLink || waLink || emailLink ? `<div class="card-links">${liLink}${waLink}${emailLink}</div>` : ""}
+</div>`;
+					})
+					.join("");
+			}
+
+			function renderTable(people) {
+				const tbody = document.getElementById("table-body");
+				const tableWrap = document.getElementById("table-wrap");
+
+				if (!people.length) {
+					tableWrap.innerHTML =
+						'<div class="loading">No hay resultados para esa búsqueda.</div>';
+					return;
+				}
+
+				tbody.innerHTML = people
+					.map((p) => {
+						const sc = SECTOR_COLORS[p.sector] || SECTOR_COLORS["Otros"];
+						const links = [];
+						if (p.linkedin)
+							links.push(
+								`<a class="tbl-link" href="${p.linkedin.startsWith("http") ? p.linkedin : "https://" + p.linkedin}" target="_blank">LinkedIn</a>`
+							);
+						if (p.whatsapp)
+							links.push(
+								`<a class="tbl-link" href="https://wa.me/${String(p.whatsapp).replace(/\D/g, "")}" target="_blank">WhatsApp</a>`
+							);
+						if (p.email)
+							links.push(
+								`<a class="tbl-link" href="mailto:${p.email}" target="_blank">Email</a>`
+							);
+						return `<tr>
+  <td>
+    <div class="tbl-person">
+      <div class="tbl-avatar">${ini(p.nombre, p.apellido)}</div>
+      <span class="tbl-name">${p.nombre} ${p.apellido}</span>
+    </div>
+  </td>
+  <td><span class="tbl-company" title="${p.empresa}">${p.empresa}</span></td>
+  <td><span class="tbl-rol" title="${p.rol}">${p.rol}</span></td>
+  <td><span class="sector-badge" style="background:${sc.bg};color:${sc.color}">${p.sector}</span></td>
+  <td><span class="tbl-intencion" title="${p.intencion}">${p.intencion}</span></td>
+  <td><div class="tbl-links">${links.join("") || "—"}</div></td>
+</tr>`;
+					})
+					.join("");
+			}
+
+			// ─── Data loading ─────────────────────────────────────────────────────────
+
+			async function loadDirectory() {
+				const grid = document.getElementById("cards-grid");
+				grid.innerHTML =
+					'<div class="loading"><div class="spinner"></div>Cargando asistentes...</div>';
+
+				try {
+					const res = await fetch(SCRIPT_URL + "?cb=" + Date.now());
+					allPeople = await res.json();
+				} catch (e) {
+					const own = JSON.parse(
+						localStorage.getItem("cessi_mdq_own") || "null"
+					);
+					allPeople = own ? [own] : [];
+				}
+
+				buildFilters();
+				renderDirectory(getFiltered());
+			}
+
+			// ─── Form submit ──────────────────────────────────────────────────────────
 
 			async function handleSubmit() {
 				const v = (id) => document.getElementById(id).value.trim();
@@ -669,78 +1107,13 @@
 				loadDirectory();
 			}
 
-			async function loadDirectory() {
-				const grid = document.getElementById("cards-grid");
-				grid.innerHTML =
-					'<div class="loading"><div class="spinner"></div>Cargando asistentes...</div>';
+			// ─── Utils ────────────────────────────────────────────────────────────────
 
-				try {
-					const res = await fetch(SCRIPT_URL + "?cb=" + Date.now());
-					allPeople = await res.json();
-				} catch (e) {
-					const own = JSON.parse(
-						localStorage.getItem("cessi_mdq_own") || "null",
-					);
-					allPeople = own ? [own] : [];
-				}
-
-				renderCards(allPeople);
+			function escAttr(str) {
+				return str.replace(/"/g, "&quot;");
 			}
 
-			function renderCards(people) {
-				const grid = document.getElementById("cards-grid");
-				const badge = document.getElementById("count-badge");
-				badge.textContent = `${people.length} persona${people.length !== 1 ? "s" : ""}`;
-
-				if (!people.length) {
-					grid.innerHTML =
-						'<div class="loading">Todavía no hay presentaciones publicadas.</div>';
-					return;
-				}
-
-				grid.innerHTML = people
-					.map((p) => {
-						const sc = SECTOR_COLORS[p.sector] || SECTOR_COLORS["Otros"];
-						const liLink = p.linkedin
-							? `<a class="card-link" href="${p.linkedin.startsWith("http") ? p.linkedin : "https://" + p.linkedin}" target="_blank">↗ LinkedIn</a>`
-							: "";
-						const waLink = p.whatsapp
-							? `<a class="card-link" href="https://wa.me/${String(p.whatsapp).replace(/\D/g, "")}" target="_blank">↗ WhatsApp</a>`
-							: "";
-						const emailLink = p.email
-							? `<a class="card-link" href="mailto:${p.email}" target="_blank">↗ Email</a>`
-							: "";
-						return `
-<div class="person-card">
-  <div class="card-top">
-    <div class="avatar">${ini(p.nombre, p.apellido)}</div>
-    <div>
-      <div class="card-name">${p.nombre} ${p.apellido}</div>
-      <div class="card-role">${p.rol} · ${p.empresa}</div>
-    </div>
-  </div>
-  <span class="sector-badge" style="background:${sc.bg};color:${sc.color}">${p.sector}</span>
-  <div class="card-intencion">${p.intencion}</div>
-  ${liLink || waLink || emailLink ? `<div class="card-links">${liLink}${waLink}${emailLink}</div>` : ""}
-</div>`;
-					})
-					.join("");
-			}
-
-			function filterCards() {
-				const q = document.getElementById("search-input").value.toLowerCase();
-				if (!q) {
-					renderCards(allPeople);
-					return;
-				}
-				renderCards(
-					allPeople.filter((p) =>
-						[p.nombre, p.apellido, p.empresa, p.sector, p.rol].some((v) =>
-							v.toLowerCase().includes(q),
-						),
-					),
-				);
-			}
+			// ─── Init ─────────────────────────────────────────────────────────────────
 
 			window.addEventListener("DOMContentLoaded", () => {
 				if (localStorage.getItem(STORAGE_KEY)) {
